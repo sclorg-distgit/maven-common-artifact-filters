@@ -4,7 +4,7 @@
 
 Name:          %{?scl_prefix}%{pkg_name}
 Version:       1.4
-Release:       11.10%{?dist}
+Release:       11.11%{?dist}
 Summary:       Maven Common Artifact Filters
 License:       ASL 2.0
 Url:           http://maven.apache.org/shared/
@@ -13,11 +13,11 @@ BuildArch:     noarch
 
 BuildRequires: %{?scl_prefix_java_common}maven-local
 BuildRequires: %{?scl_prefix_java_common}easymock
-BuildRequires: maven30-maven-shared
-BuildRequires: maven30-maven-resources-plugin
-BuildRequires: maven30-plexus-containers-container-default
-BuildRequires: maven30-maven-test-tools
-BuildRequires: maven30-maven-plugin-testing-harness
+BuildRequires: %{?scl_prefix}maven-shared
+BuildRequires: %{?scl_prefix}maven-resources-plugin
+BuildRequires: %{?scl_prefix}plexus-containers-container-default
+BuildRequires: %{?scl_prefix}maven-test-tools
+BuildRequires: %{?scl_prefix}maven-plugin-testing-harness
 
 
 %description
@@ -32,7 +32,7 @@ This package contains javadoc for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # Maven 2 -> Maven 3
@@ -47,13 +47,13 @@ set -e -x
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -67,6 +67,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.4-11.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.4-11.10
 - maven33 rebuild
 
