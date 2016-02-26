@@ -4,20 +4,21 @@
 
 Name:          %{?scl_prefix}%{pkg_name}
 Version:       1.4
-Release:       11.11%{?dist}
+Release:       11.13%{?dist}
 Summary:       Maven Common Artifact Filters
 License:       ASL 2.0
 Url:           http://maven.apache.org/shared/
 Source0:       http://repo1.maven.org/maven2/org/apache/maven/shared/%{pkg_name}/%{version}/%{pkg_name}-%{version}-source-release.zip
 BuildArch:     noarch
 
-BuildRequires: %{?scl_prefix_java_common}maven-local
+BuildRequires: %{?scl_prefix}maven-local
 BuildRequires: %{?scl_prefix_java_common}easymock
 BuildRequires: %{?scl_prefix}maven-shared
 BuildRequires: %{?scl_prefix}maven-resources-plugin
 BuildRequires: %{?scl_prefix}plexus-containers-container-default
 BuildRequires: %{?scl_prefix}maven-test-tools
 BuildRequires: %{?scl_prefix}maven-plugin-testing-harness
+BuildRequires: %{?scl_prefix_java_common}cglib
 
 
 %description
@@ -67,6 +68,12 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Thu Feb 11 2016 Michal Srb <msrb@redhat.com> - 1.4-11.13
+- Add missing BR: cglib
+
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.4-11.12
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.4-11.11
 - maven33 rebuild #2
 
